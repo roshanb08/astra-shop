@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  php:
+    build: ./docker/php
+    container_name: astra-php
+    working_dir: /var/www/html
+    volumes:
+      - ./app:/var/www/html
+      - ./app/vendor:/var/www/html/vendor
+      - ./app/storage:/var/www/html/storage
+      - ./app/storage/app/public/storage:/var/www/html/public/storage
+      - ./app/cache:/var/www/html/bootstrap/cache
+    environment:
+      - PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: astra-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./app/storage/app/public/storage:/var/www/html/public/storage
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+
+  node:
+    build: ./docker/node
+    container_name: astra-node
+    working_dir: /var/www/html
+    command: sh -c "npm install && npm run dev -- --host --port=5173"
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - "5173:5173"
+
+  queue:
+    build: ./docker/php
+    container_name: astra-queue
+    working_dir: /var/www/html
+    command: php artisan queue:work --tries=3 --verbose --queue=default
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - redis
+      - php
+      - db
+
+  db:
+    image: mysql:8.4
+    container_name: astra-mysql
+    environment:
+      MYSQL_DATABASE: astra
+      MYSQL_USER: astra
+      MYSQL_PASSWORD: astra
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: astra-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mysql_data:
+  redis_data:
