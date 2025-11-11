@@ -91,9 +91,8 @@
     <div class="container-fluid">
       <div class="d-lg-flex align-items-center">
         <div class="text-center d-lg-flex justify-content-center">
-          <!-- 删除版权信息, 请先购买授权 https://beikeshop.com/service -->
           @if(!check_license())
-          Powered By&nbsp;<a href="https://beikeshop.com/" target="_blank" rel="noopener">BeikeShop</a>&nbsp;-&nbsp;
+          Powered By&nbsp;<a href="https://astraedtech.com.np" target="_blank" rel="noopener">Astra Edtech</a>&nbsp;-&nbsp;
           @endif
           {!! $footer_content['bottom']['copyright'][locale()] ?? '' !!}
         </div>
