@@ -77,44 +77,49 @@
           </div>
         </li>
 
-        @hookwrapper('admin.header.upgrade')
-        <li class="nav-item update-btn me-2" style="display: none">
-          <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">@lang('admin/common.update_nav')</a>
-        </li>
-        @endhookwrapper
+        @if (auth()->user()->is_global_admin)
 
-        @hookwrapper('admin.header.license')
-        <li class="nav-item">
-          <a
-            href="{{ beike_url() }}/vip/subscription?domain={{ config('app.url') }}&developer_token={{ system_setting('base.developer_token') }}&type=tab-license"
-            target="_blank" class="nav-link">
-            <i class="bi bi-wrench-adjustable-circle fs-5 text-info"></i>&nbsp;@lang('admin/common.license_services')
-          </a>
-        </li>
-        @endhookwrapper
+          @hookwrapper('admin.header.upgrade')
+          <li class="nav-item update-btn me-2" style="display: none">
+            <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">@lang('admin/common.update_nav')</a>
+          </li>
+          @endhookwrapper
 
-        @hookwrapper('admin.header.marketing')
-        <li class="nav-item">
-          <a href="{{ admin_route('marketing.index') }}" class="nav-link"><i class="bi bi-puzzle fs-5 text-info"></i>&nbsp;@lang('admin/common.marketing')
-          </a>
-        </li>
-        @endhookwrapper
+          @hookwrapper('admin.header.license')
+          <li class="nav-item">
+            <a
+              href="{{ beike_url() }}/vip/subscription?domain={{ config('app.url') }}&developer_token={{ system_setting('base.developer_token') }}&type=tab-license"
+              target="_blank" class="nav-link">
+              <i class="bi bi-wrench-adjustable-circle fs-5 text-info"></i>&nbsp;@lang('admin/common.license_services')
+            </a>
+          </li>
+          @endhookwrapper
 
-        @hookwrapper('admin.header.language')
-        <li class="nav-item">
-          <div class="dropdown">
-            <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-               data-bs-toggle="dropdown">{{ $admin_language['name'] }}</a>
+          @hookwrapper('admin.header.marketing')
+          <li class="nav-item">
+            <a href="{{ admin_route('marketing.index') }}" class="nav-link"><i class="bi bi-puzzle fs-5 text-info"></i>&nbsp;@lang('admin/common.marketing')
+            </a>
+          </li>
+          @endhookwrapper
 
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-              @foreach ($admin_languages as $language)
-                <li><a href="{{ admin_route('edit.locale', ['locale' => $language['code']]) }}"
-                       class="dropdown-item">{{ $language['name'] }}</a></li>
-              @endforeach
-            </ul>
-          </div>
-        </li>
-        @endhookwrapper
+          @hookwrapper('admin.header.language')
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" href="javascript:void(0)"
+                data-bs-toggle="dropdown">{{ $admin_language['name'] }}</a>
+
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                @foreach ($admin_languages as $language)
+                  <li><a href="{{ admin_route('edit.locale', ['locale' => $language['code']]) }}"
+                        class="dropdown-item">{{ $language['name'] }}</a></li>
+                @endforeach
+              </ul>
+            </div>
+          </li>
+          @endhookwrapper
+
+        @endif
+
 
         @hookwrapper('admin.header.user')
         <li class="nav-item me-3">
@@ -129,11 +134,13 @@
                   <i class="bi bi-send me-1"></i> {{ __('admin/common.access_frontend') }}
                 </a>
               </li>
-              <li>
-                <a href="{{ admin_route('account.index') }}" class="dropdown-item py-2">
-                  <i class="bi bi-person-circle me-1"></i> {{ __('admin/common.account_index') }}
-                </a>
-              </li>
+              @if (auth()->user()->is_global_admin)
+                <li>
+                  <a href="{{ admin_route('account.index') }}" class="dropdown-item py-2">
+                    <i class="bi bi-person-circle me-1"></i> {{ __('admin/common.account_index') }}
+                  </a>
+                </li>
+              @endif
               <li>
                 <hr class="dropdown-divider">
               </li>

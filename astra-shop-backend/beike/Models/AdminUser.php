@@ -15,7 +15,7 @@ class AdminUser extends AuthUser
 
     public const AUTH_GUARD = 'web_admin';
 
-    protected $fillable = ['name', 'email', 'locale', 'password', 'active'];
+    protected $fillable = ['name', 'email', 'locale', 'password', 'active','is_global_admin'];
 
     public function tokens(): HasMany
     {
