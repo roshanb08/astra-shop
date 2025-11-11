@@ -24,7 +24,7 @@
   <div class="install-box">
     <aside class="aside-wrap">
       <div class="top">
-        <div class="logo mb-5"><img src="{{ asset('/image/logo.png') }}" class="img-fluid"></div>
+        <div class="logo mb-5"><img src="{{ asset('/image/astra-logo.png') }}" class="img-fluid"></div>
         <div class="steps-wrap">
           <ul>
             <li class="{{ $steps == 1 ? 'ing' : '' }} {{ $steps > 1 ? 'success' : '' }}">

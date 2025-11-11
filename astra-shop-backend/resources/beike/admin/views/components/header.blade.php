@@ -4,7 +4,7 @@
     <div class="header-left">
       @hook('admin.header.left.before')
       <div class="logo">
-        <a href=""><img src="{{ asset(system_setting('base.admin_logo', 'image/logo.png')) }}" class="img-fluid"></a>
+        <a href=""><img src="{{ asset(system_setting('base.admin_logo', 'image/astra-logo.png')) }}" class="img-fluid"></a>
       </div>
       @hook('admin.header.left.after')
     </div>
@@ -162,7 +162,7 @@
       <div class="mobile-open-menu"><i class="bi bi-list"></i></div>
     </div>
     <div class="logo">
-      <a href=""><img src="{{ asset('image/logo.png') }}" class="img-fluid"></a>
+      <a href=""><img src="{{ asset(system_setting('base.admin_logo', 'image/astra-logo.png')) }}" class="img-fluid"></a>
     </div>
     <div class="header-mobile-right">
       <div class="mobile-to-front">

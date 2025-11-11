@@ -156,9 +156,9 @@
 
             <x-admin::form.row title="{{ __('admin/setting.admin_logo') }}">
               <div class="open-crop cursor-pointer bg-light wh-80 border d-flex justify-content-center align-items-center me-2 mb-2 position-relative" ratio="380/100">
-                <img src="{{ image_resize(old('admin_logo', system_setting('base.admin_logo', 'image/logo.png'))) }}" class="img-fluid">
+                <img src="{{ image_resize(old('admin_logo', system_setting('base.admin_logo', 'image/astra-logo.png'))) }}" class="img-fluid">
               </div>
-              <input type="hidden" value="{{ old('admin_logo', system_setting('base.admin_logo', 'image/logo.png')) }}" name="admin_logo">
+              <input type="hidden" value="{{ old('admin_logo', system_setting('base.admin_logo', 'image/astra-logo.png')) }}" name="admin_logo">
               <div class="help-text font-size-12 lh-base">{{ __('common.recommend_size') }} 388*73</div>
             </x-admin::form.row>
 
