@@ -41,7 +41,7 @@
     </div>
   </div>
   <!-- Scrollable modal -->
-  <div class="modal fade" id="modal-copyright" tabindex="-1" data-bs-backdrop="static">
+  <!-- <div class="modal fade" id="modal-copyright" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -235,7 +235,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 @endsection
 
 @section('scripts')
