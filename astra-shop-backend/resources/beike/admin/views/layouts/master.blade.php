@@ -59,7 +59,7 @@
         </div>
 
         <p class="text-center text-secondary mt-5" id="copyright-text">
-            <a href="https://beikeshop.com/" class="ms-2" target="_blank">BeikeShop</a>
+            <a href="https://astraedtech.com.np" class="ms-2" target="_blank">Astra Shop</a>
             v{{ config('beike.version') }}({{ config('beike.build') }})
             &copy; {{ date('Y') }} All Rights Reserved</p>
 
