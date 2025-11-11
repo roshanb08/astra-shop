@@ -18,7 +18,7 @@ class SetLocaleInstaller
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale      = $_COOKIE['locale'] ?? 'zh_cn';
+        $locale      = $_COOKIE['locale'] ?? 'en';
         $languageDir = base_path('beike/Installer/Lang');
         $languages   = array_values(array_diff(scandir($languageDir), ['..', '.']));
 
@@ -27,7 +27,7 @@ class SetLocaleInstaller
         if ($locale && in_array($locale, $languages)) {
             App::setLocale($locale);
         } else {
-            App::setLocale('zh_cn');
+            App::setLocale('en');
         }
 
         return $next($request);

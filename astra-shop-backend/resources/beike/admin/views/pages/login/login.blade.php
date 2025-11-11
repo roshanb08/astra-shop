@@ -44,14 +44,14 @@
               @endif
 
               <div class="d-grid mb-4"><button type="submit" class="btn btn-lg btn-primary">{{ __('admin/login.log_in') }}</button></div>
-              <a href="{{ admin_route('forgotten.index') }}" class="text-muted"><i class="bi bi-question-circle"></i> 忘记密码</a>
+              <a href="{{ admin_route('forgotten.index') }}" class="text-muted"><i class="bi bi-question-circle"></i> Forgot Password </a>
             </form>
           </div>
         </div>
       </div>
 
       <p class="text-center text-secondary mt-5">
-        <a href="https://beikeshop.com/" class="ms-2" target="_blank">BeikeShop</a>
+        <a href="https://astraedtech.com.np" class="ms-2" target="_blank">Astrashop</a>
         v{{ config('beike.version') }}({{ config('beike.build') }})
         &copy; {{ date('Y') }} All Rights Reserved</p>
     </div>

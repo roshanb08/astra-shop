@@ -25,7 +25,7 @@ class WelcomeController extends BaseController
     {
         $this->checkInstalled();
         $data['languages'] = $this->languages;
-        $data['locale']    = $_COOKIE['locale'] ?? 'zh_cn';
+        $data['locale']    = $_COOKIE['locale'] ?? 'en';
         $data['steps']     = 1;
 
         return view('installer::welcome', $data);

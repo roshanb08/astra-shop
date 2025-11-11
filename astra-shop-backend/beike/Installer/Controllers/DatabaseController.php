@@ -72,7 +72,7 @@ class DatabaseController extends BaseController
             'name'     => substr($email, 0, strpos($email, '@')),
             'email'    => $email,
             'password' => request('admin_password'),
-            'locale'   => session('locale') ?? 'zh_cn',
+            'locale'   => session('locale') ?? 'en',
             'active'   => true,
         ];
 
