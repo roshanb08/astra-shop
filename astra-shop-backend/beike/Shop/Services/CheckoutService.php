@@ -122,7 +122,7 @@ class CheckoutService
             StateMachineService::getInstance($order)->changeStatus(StateMachineService::UNPAID, '', true);
             CartRepo::clearSelectedCartProducts($customer);
 
-            hook_action('service.checkout.confirm.after', ['order' => $order, 'cart' => $this->cart]);
+            // hook_action('service.checkout.confirm.after', ['order' => $order, 'cart' => $this->cart]);
 
             DB::commit();
         } catch (\Exception $e) {
@@ -179,17 +179,17 @@ class CheckoutService
             }
         }
 
-        if ($this->showShippingMethod()) {
-            $shippingMethodCode = $current['shipping_method_code'];
-            if (! PluginRepo::shippingEnabled($shippingMethodCode)) {
-                throw new \Exception(trans('shop/carts.invalid_shipping_method'));
-            }
-        }
+        // if ($this->showShippingMethod()) {
+        //     $shippingMethodCode = $current['shipping_method_code'];
+        //     if (! PluginRepo::shippingEnabled($shippingMethodCode)) {
+        //         throw new \Exception(trans('shop/carts.invalid_shipping_method'));
+        //     }
+        // }
 
-        $paymentMethodCode = $current['payment_method_code'];
-        if (! PluginRepo::paymentEnabled($paymentMethodCode)) {
-            throw new \Exception(trans('shop/carts.invalid_payment_method'));
-        }
+        // $paymentMethodCode = $current['payment_method_code'];
+        // if (! PluginRepo::paymentEnabled($paymentMethodCode)) {
+        //     throw new \Exception(trans('shop/carts.invalid_payment_method'));
+        // }
 
         hook_action('service.checkout.validate_confirm.after', $checkoutData);
     }

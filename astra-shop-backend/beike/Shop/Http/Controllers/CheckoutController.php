@@ -59,7 +59,14 @@ class CheckoutController extends Controller
         try {
             $data = (new CheckoutService)->confirm();
 
-            return hook_filter('checkout.confirm.data', $data);
+            // return hook_filter('checkout.confirm.data', $data);
+
+            //static change without payment method for static checkout cash on delivery
+            $order_number = $data->number;
+            $customer = current_customer();
+            $order    = OrderRepo::getOrderByNumber($order_number, $customer);
+            $data     = hook_filter('account.order.show.data', ['order' => $order, 'html_items' => []]);
+            return view('checkout/success', $data);
         } catch (\Exception $e) {
             return json_fail($e->getMessage());
         }

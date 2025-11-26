@@ -45,7 +45,8 @@
               <h5 class="checkout-title">{{ __('shop/checkout.payment_method') }}</h5>
               <div class="radio-line-wrap" id="payment-methods-wrap">
                 @foreach ($payment_methods as $payment)
-                  <div class="radio-line-item {{ $payment['code'] == $current['payment_method_code'] ? 'active' : '' }}"
+                  <!-- <div class="radio-line-item {{ $payment['code'] == $current['payment_method_code'] ? 'active' : '' }}" -->
+                  <div class="radio-line-item"
                        data-key="payment_method_code" data-value="{{ $payment['code'] }}">
                     <div class="left">
                       <span class="radio"></span>
@@ -56,6 +57,18 @@
                     </div>
                   </div>
                 @endforeach
+                  <!-- static button added  -->
+                  <div class="radio-line-item active"
+                       data-key="payment_method_code" data-value="cod">
+                    <div class="left">
+                      <span class="radio"></span>
+                      <img src="{{ asset('image/cod.png') }}" class="img-fluid" alt="Cash on Delivery">
+                    </div>
+                    <div class="right ms-2">
+                      <div class="title">Cash on Delivery</div>
+                    </div>
+                  </div>
+                  <!-- static button end -->
               </div>
             </div>
 
@@ -66,7 +79,7 @@
                 <div class="radio-line-wrap" id="shipping-methods-wrap">
                   @foreach ($shipping_methods as $methods)
                     @foreach ($methods['quotes'] as $shipping)
-                      <div
+                      <!-- <div
                         class="radio-line-item {{ $shipping['code'] == $current['shipping_method_code'] ? 'active':'' }}"
                         data-key="shipping_method_code" data-value="{{ $shipping['code'] }}">
                         <div class="left">
@@ -79,9 +92,22 @@
                             <div class="mt-2">{!! $shipping['html'] !!}</div>
                           @endif
                         </div>
-                      </div>
+                      </div> -->
                     @endforeach
                   @endforeach
+                  <!-- static button added -->
+                  <div class="radio-line-item d-flex align-items-center active" data-key="shipping_method_code" data-value="flat_shipping.0">
+                    <div class="left">
+                      <span class="radio"></span>
+                      <img src="http://localhost:8090/cache/plugin/_flat_shipping/image/logo-100x100.png" class="img-fluid" alt="Flat Rate Shipping">
+                    </div>
+                    <div class="right ms-2">
+                      <div class="title">Flat Rate Shipping</div>
+                      <div class="mt-2 d-none"></div>
+                    </div>
+                  </div>
+                  <!-- static button end  -->
+
                 </div>
               </div>
               @endhookwrapper
